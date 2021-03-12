@@ -22,8 +22,13 @@ ccache --max-size 100M --show-stats
 deactivate
 
 # Install miniconda
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    -O miniconda.sh
+if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+    wget https://github.com/conda-forge/miniforge/releases/download/4.8.2-1/Miniforge3-4.8.2-1-Linux-aarch64.sh \
+        -O miniconda.sh;
+else \
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+        -O miniconda.sh;
+fi
 MINICONDA_PATH=/home/travis/miniconda
 chmod +x miniconda.sh && ./miniconda.sh -b -p $MINICONDA_PATH
 export PATH=$MINICONDA_PATH/bin:$PATH

@@ -24,7 +24,10 @@ env:
 
 matrix:
   include:
-    - env: PYTHON_VERSION="3.8" TEST_DOC="true" TEST_NUMPYDOC="true"
+    - arch: arm64
+      env: PYTHON_VERSION="3.8" TEST_DOC="true" TEST_NUMPYDOC="true"
+    - arch: amd64
+      env: PYTHON_VERSION="3.8" TEST_DOC="true" TEST_NUMPYDOC="true"
 
 install: source build_tools/travis/install.sh
 script: bash build_tools/travis/test_script.sh
